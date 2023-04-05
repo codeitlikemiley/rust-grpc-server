@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package counter;
+
+message IncrementRequest {
+    int32 value = 1;
+}
+
+message IncrementResponse {
+    bool success = 1;
+}
+
+message DecrementRequest {
+    int32 value = 1;
+}
+
+message DecrementResponse {
+    bool success = 1;
+}
+
+message GetCurrentValueRequest {}
+
+message GetCurrentValueResponse {
+    int32 value = 1;
+}
+
+service Counter {
+    rpc Increment(IncrementRequest) returns (IncrementResponse);
+    rpc Decrement(DecrementRequest) returns (DecrementResponse);
+    rpc GetCurrentValue(GetCurrentValueRequest) returns (GetCurrentValueResponse);
+}

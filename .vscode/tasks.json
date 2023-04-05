@@ -1,0 +1,31 @@
+{
+    // add new task to watch build
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "proto build",
+            "type": "shell",
+            "command": "cargo watch -x build",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$rustc"
+            ]
+        },
+        {
+            "label": "watch",
+            "type": "shell",
+            "command": "cargo watch -x run",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$rustc"
+            ]
+        }
+    ]
+}
+
