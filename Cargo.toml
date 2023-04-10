@@ -6,11 +6,13 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+dotenv = "0.15.0"
 prost = "0.11.8"
 prost-derive = "0.11.8"
 prost-types = "0.11.8"
+sqlx = {version =  "0.6.3" , features = ["postgres", "runtime-tokio-native-tls"] }
 tokio = {version = "1.27.0",  features = ["full"] }
-tonic = "0.9.1"
+tonic = {version = "0.9.1", features = ["codegen"] }
 
 [build-dependencies]
 tonic-build = "0.9.1"
