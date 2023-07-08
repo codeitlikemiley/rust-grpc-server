@@ -71,3 +71,9 @@ we just need to pass
 }
 ```
 
+## Production
+We can deploy this in an AWS EC2 Instance with AWS Api Gateway + Route 53
+
+
+## TODO
+- Terraform config to quickly deploy on AWS
