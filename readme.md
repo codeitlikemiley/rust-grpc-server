@@ -71,6 +71,30 @@ we just need to pass
 }
 ```
 
+## use `Workspace` for Large MonoRepo 
+
+you can either use a lib.rs or main.rs , and use the `-p ${workspace}` tag on the `cargo` command
+
+ie: `cargo build -p server` would invoke the build.rs on server workspace
+
+or `cargo run -p server` would invoke the main.rs on server workspace
+
+### Creating new Workspace
+run command: `cargo new --vcs none --lib ${workspace}` to generate shared library
+run command: `cargo new --vcs none ${workspace}` to generate package
+
+### Modify Cargo.toml
+```rust
+[workspace]
+
+members = [
+    "server",
+]
+```
+
+## building whole packages in all workspace
+run command: `cargo build` : this would invoke build in all packages type , install dependencies as well
+
 ## Production
 We can deploy this in an AWS EC2 Instance with AWS Api Gateway + Route 53
 
