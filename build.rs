@@ -11,6 +11,7 @@ fn main() {
         .out_dir("pb")
         .build_server(true)
         .build_client(false)
+        .file_descriptor_set_path("pb/reflection_descriptor.bin")
         .compile(&proto_files, &["protos"])
         .unwrap_or_else(|e| panic!("Failed to compile protos {:?}", e));
 }
