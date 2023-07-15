@@ -138,7 +138,7 @@ members = [
 
 ## building whole packages in all workspace
 run command: `cargo build` : this would invoke build in all packages type , install dependencies as well
->>>>>>> main
+
 
 ## Production
 We can deploy this in an AWS EC2 Instance with AWS Api Gateway + Route 53
