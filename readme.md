@@ -72,7 +72,7 @@ we just need to pass
 ```
 
 
-10.  Use with Evans CLI
+10.  [Use with Evans CLI](https://github.com/ktr0731/evans#usage-cli)
 
 - connect to your grpc server
 ```sh
