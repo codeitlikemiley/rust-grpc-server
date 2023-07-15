@@ -71,8 +71,9 @@ we just need to pass
 }
 ```
 
-8.  Use with Evans CLI
+10.  Use with Evans CLI
 
+- connect to your grpc server
 ```sh
 evans -p 50051 -r
 ```
