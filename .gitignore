@@ -1,3 +1,7 @@
 /target
 *.env
 !.env_example
+.DS_Store
+
+pb/*
+!pb/.gitkeep
