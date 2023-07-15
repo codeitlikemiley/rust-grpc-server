@@ -71,6 +71,49 @@ we just need to pass
 }
 ```
 
+8.  Use with Evans CLI
+
+```sh
+evans -p 50051 -r
+```
+
+- list all packages
+
+```sh
+show package
+```
+
+- switch to specific package
+
+```sh
+package ${NAME_OF_PACKAGE}
+```
+
+- list all service of a package, note you need to be inside a package to use this
+```sh
+show service
+```
+
+- list all messages of package
+```sh
+show message
+```
+- describe a message
+```sh
+desc ${MESSAGE}
+```
+
+- switch to a service
+```sh
+service ${SERVICE_NAME}
+```
+
+- call an RPC
+```sh
+call ${RPC}
+```
+
+
 ## Production
 We can deploy this in an AWS EC2 Instance with AWS Api Gateway + Route 53
 
