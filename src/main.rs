@@ -1,25 +1,22 @@
+use auth_service::{ auth::auth_server::AuthServer, auth_impl::AuthService};
+use counter::{counter_impl::MyCounter, counter::counter_server::CounterServer};
 use tonic::transport::Server;
-
-use hello_world::{hello_world_impl::MyGreeter, hello_world_server::greeter_server::GreeterServer};
-
-use counter::{counter_impl::MyCounter, counter_server::counter_server::CounterServer};
-use user::{user_service_impl::MyUserService, user_service_server::user_service_server::UserServiceServer};
+use std::env;
 
 mod counter;
-mod hello_world;
-mod user;
+mod auth_service;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let addr = "127.0.0.1:50051".parse().unwrap();
-    let greeter = MyGreeter {};
+    dotenv::dotenv().ok();
+    let addr = env::var("GRPC_SERVER_ADDRESS")?.parse().unwrap();
     let counter = MyCounter::new();
-    let auth_service = MyUserService {};
+    let auth_service = AuthService::new(b"secret".to_vec());
 
     Server::builder()
-        .add_service(GreeterServer::new(greeter))
         .add_service(CounterServer::new(counter))
-        .add_service(UserServiceServer::new(auth_service))
+        .add_service(AuthServer::new(auth_service))
+        // todo add tonic reflection
         .serve(addr)
         .await?;
 

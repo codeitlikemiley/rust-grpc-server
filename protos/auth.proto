@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package auth;
+
+service Auth {
+  rpc Login(LoginRequest) returns (LoginResponse) {}
+  rpc ForgotPassword(ForgotPasswordRequest) returns (ForgotPasswordResponse) {}
+  rpc VerifyRegisteredUser(IsRegisteredRequest) returns (IsRegisteredResponse) {}
+  rpc Signup(SignupRequest) returns (SignupResponse) {}
+  rpc Logout(LogoutRequest) returns (LogoutResponse) {}
+  rpc ResetPassword(ResetPasswordRequest) returns (ResetPasswordResponse) {}
+}
+
+message LoginRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  string token = 1;
+}
+
+message ForgotPasswordRequest {
+  string email = 1;
+}
+
+message ForgotPasswordResponse {
+  bool success = 1;
+}
+
+message IsRegisteredRequest {
+  string email = 1;
+}
+
+message IsRegisteredResponse {
+  bool registered = 1;
+}
+
+message SignupRequest {
+  string username = 1;
+  string email = 2;
+  string password = 3;
+}
+
+message SignupResponse {
+  string user_id = 1;
+  string username = 2;
+  string email = 3;
+}
+
+message LogoutRequest {
+  string token = 1;
+}
+
+message LogoutResponse {
+  bool success = 1;
+}
+
+message ResetPasswordRequest {
+  string email = 1;
+  string new_password = 2;
+}
+
+message ResetPasswordResponse {
+  bool success = 1;
+}

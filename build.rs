@@ -8,6 +8,7 @@ fn main() {
         .collect();
 
     tonic_build::configure()
+        .out_dir("pb")
         .build_server(true)
         .build_client(false)
         .compile(&proto_files, &["protos"])

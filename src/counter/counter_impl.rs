@@ -2,13 +2,14 @@ use std::sync::Arc;
 use std::sync::Mutex;
 use tonic::{Request, Response, Status};
 
-use super::counter_server::DecrementRequest;
-use super::counter_server::DecrementResponse;
-use super::counter_server::GetCurrentValueRequest;
-use super::counter_server::GetCurrentValueResponse;
-use super::counter_server::IncrementRequest;
-use super::counter_server::IncrementResponse;
-use super::counter_server::counter_server::Counter;
+use super::counter::DecrementRequest;
+use super::counter::DecrementResponse;
+use super::counter::GetCurrentValueRequest;
+use super::counter::GetCurrentValueResponse;
+use super::counter::IncrementRequest;
+use super::counter::IncrementResponse;
+use super::counter::counter_server::Counter;
+
 
 
 pub struct MyCounter {

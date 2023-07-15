@@ -10,7 +10,7 @@ dotenv = "0.15.0"
 prost = "0.11.8"
 prost-derive = "0.11.8"
 prost-types = "0.11.8"
-sqlx = {version =  "0.6.3" , features = ["postgres", "runtime-tokio-native-tls"] }
+sqlx = {version =  "0.7.1" , features = ["postgres", "runtime-tokio-native-tls"] }
 tokio = {version = "1.27.0",  features = ["full"] }
 tonic = {version = "0.9.1", features = ["codegen"] }
 
