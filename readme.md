@@ -2,22 +2,6 @@
 
 [![Gitpod ready-to-code](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/codeitlikemiley/rust-grpc-server)
 
-## Production Dockerfile
-
-- `docker build -t codeitlikemiley/rust-grpc --build-arg DB_URL=postgres://username@localhost/dbname --build-arg GRPC_SERVER_ADDRESS=127.0.0.1:50051 .`
-
-- `docker run -p 50051:50051 -e GRPC_SERVER_ADDRESS=127.0.0.1:50051 codeitlikemiley/rust-grpc`
-
-## TODO
-- add Dockerfile for development
-    - add `protoc`
-```sh
-sudo apt update && sudo apt upgrade -y
-sudo apt install -y protobuf-compiler libprotobuf-dev
-```
-
-- add Dockerfile with Multi Stage build for production
-
 ## VsCode Snippets for GRPC services
 Press <kbd>OPT</kbd> + <kbd>F1</kbd>
 1. for creating .proto search: <kbd>proto</kbd>
@@ -128,38 +112,41 @@ desc ${MESSAGE}
 service ${SERVICE_NAME}
 ```
 
+- Authentication with Bearer Token
+```sh
+header Authorization="Bearer some-secret-token"
+header show
+```
+
 - call an RPC
 ```sh
 call ${RPC}
 ```
 
-## use `Workspace` for Large MonoRepo
+## Docker Multi-stage Build for Production Grade Dockerfile
 
-you can either use a lib.rs or main.rs , and use the `-p ${workspace}` tag on the `cargo` command
 
-ie: `cargo build -p server` would invoke the build.rs on server workspace
+- Building Docker Image with/out ENV VAR
 
-or `cargo run -p server` would invoke the main.rs on server workspace
-
-### Creating new Workspace
-run command: `cargo new --vcs none --lib ${workspace}` to generate shared library
-run command: `cargo new --vcs none ${workspace}` to generate package
-
-### Modify Cargo.toml
-```rust
-[workspace]
-
-members = [
-    "server",
-]
+```sh
+docker build -t codeitlikemiley/rust-grpc --build-arg DB_URL=postgres://username@localhost/dbname --build-arg GRPC_SERVER_ADDRESS=127.0.0.1:50051 .
 ```
 
-## building whole packages in all workspace
-run command: `cargo build` : this would invoke build in all packages type , install dependencies as well
+- Building Docker image
+
+```sh
+docker build -t codeitlikemiley/rust-grpc .
+```
+
+- Test it on you local machine
+
+```sh
+docker run -p 50051:50051 -e PRODUCTION=true codeitlikemiley/rust-grpc
+```
 
 
-## Production
-We can deploy this in an AWS EC2 Instance with AWS Api Gateway + Route 53
+
+> We can use our Production `Dockerfile` and deploy this in AWS by uploading first our Docker Image on ECR , then Set up an ECS cluster: Amazon Elastic Container Service (ECS). Set up a Load Balancer with AWS Api Gateway, and configure domain name with Route 53.
 
 
 ## TODO
