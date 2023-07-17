@@ -23,7 +23,7 @@ terraform init
 4. Create a new file named main.tf and define your Terraform configuration with the necessary AWS resources.
    a. Set up the provider and AWS credentials:
 
-```json
+```hcl
 provider "aws" {
   access_key = "<your-access-key>"
   secret_key = "<your-secret-key>"
@@ -33,7 +33,7 @@ provider "aws" {
 
 b. Create an IAM role and policy to grant necessary permissions to your ECS tasks:
 
-```json
+```hcl
 resource "aws_iam_role" "ecs_task_role" {
   name = "my-grpc-server-ecs-task-role"
 
@@ -84,7 +84,7 @@ resource "aws_iam_role_policy_attachment" "ecs_task_policy_attachment" {
 
 c. Set up an ECS cluster and task definition:
 
-```json
+```hcl
 resource "aws_ecs_cluster" "grpc_server_cluster" {
   name = "my-grpc-server-cluster"
 }
@@ -127,7 +127,7 @@ EOF
 
 d. Create a new ECS service to manage the deployment of your task:
 
-```json
+```hcl
 resource "aws_ecs_service" "grpc_server_service" {
   name            = "my-grpc-server-service"
   cluster         = aws_ecs_cluster.grpc_server_cluster.id
@@ -138,7 +138,7 @@ resource "aws_ecs_service" "grpc_server_service" {
 
 e. Set up an ALB to expose your gRPC service:
 
-```json
+```hcl
 resource "aws_lb" "grpc_server_lb" {
   name               = "my-grpc-server-lb"
   load_balancer_type = "application"
@@ -166,7 +166,7 @@ resource "aws_lb_listener" "grpc_server_listener" {
 
 f. Set up a Route 53 record to point to your ALB:
 
-```json
+```hcl
 resource "aws_route53_zone" "grpc_server_zone" {
   name = "example.com"  # Replace with your domain name
 }
@@ -192,7 +192,7 @@ resource "aws_route53_record" "grpc_server_record" {
 
 g. Set up an API Gateway to proxy requests to your ALB:
 
-```json
+```hcl
 resource "aws_apigatewayv2_api" "grpc_server_api" {
   name          = "my-grpc-server-api"
   protocol_type = "HTTP"
