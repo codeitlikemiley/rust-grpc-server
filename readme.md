@@ -2,6 +2,12 @@
 
 [![Gitpod ready-to-code](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/codeitlikemiley/rust-grpc-server)
 
+## Production Dockerfile
+
+- `docker build -t codeitlikemiley/rust-grpc --build-arg DB_URL=postgres://username@localhost/dbname --build-arg GRPC_SERVER_ADDRESS=127.0.0.1:50051 .`
+
+- `docker run -p 50051:50051 -e GRPC_SERVER_ADDRESS=127.0.0.1:50051 codeitlikemiley/rust-grpc`
+
 ## TODO
 - add Dockerfile for development
     - add `protoc`
