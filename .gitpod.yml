@@ -7,7 +7,6 @@ vscode:
   extensions:
     - rust-lang.rust-analyzer
     - franneck94.vscode-rust-config
-    - Swellaby.vscode-rust-test-adapter
     - panicbit.cargo
     - aaron-bond.better-comments
     - vadimcn.vscode-lldb
@@ -21,6 +20,7 @@ vscode:
     - pascalsenn.keyboard-quickfix
     - Luxcium.pop-n-lock-theme-vscode
     - hbenl.vscode-test-explorer
+    - Swellaby.vscode-rust-test-adapter
     - Gruntfuggly.todo-tree
 
 ports:
