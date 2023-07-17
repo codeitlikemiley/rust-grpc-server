@@ -5,4 +5,3 @@ FROM gitpod/workspace-rust:latest
 
 
 ## We need to install protoc so we can run cargo build
-RUN apt-get update && apt-get install -y protobuf-compiler libprotobuf-dev
