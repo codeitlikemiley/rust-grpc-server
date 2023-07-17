@@ -1,8 +1,8 @@
+use std::net::SocketAddr;
 use auth_service::{auth::auth_server::AuthServer, auth_impl::AuthService};
 use counter::{counter::counter_server::CounterServer, counter_impl::MyCounter};
-use echo_service::{echo::echo_server::EchoServer, echo_impl::EchoService};
-use std::env;
-use tonic::{metadata::MetadataValue, transport::Server, Request, Status};
+use echo_service::{echo_impl::EchoService, echo::echo_server::EchoServer};
+use tonic::{transport::Server, Request, Status, metadata::MetadataValue};
 use tonic_reflection::server::Builder;
 
 mod auth_service;
@@ -12,13 +12,18 @@ mod echo_service;
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     dotenv::dotenv().ok();
-    let addr = env::var("GRPC_SERVER_ADDRESS")?.parse().unwrap();
+    let addr = SocketAddr::from(([0, 0, 0, 0], 50051));
     let counter = MyCounter::new();
     let auth_service = AuthService::new(b"secret".to_vec());
     let echo_service = EchoService::default();
     let svc = EchoServer::with_interceptor(echo_service, check_auth);
 
-    let reflection_path = "pb/reflection_descriptor.bin";
+    let production = std::env::var("PRODUCTION").is_ok();
+    let reflection_path = if production {
+        "/app/pb/reflection_descriptor.bin"
+    } else {
+        "pb/reflection_descriptor.bin"
+    };
     let file = std::fs::read(reflection_path)?;
 
     Server::builder()
