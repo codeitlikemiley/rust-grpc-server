@@ -3,6 +3,6 @@
 ## check here https://hub.docker.com/r/gitpod/workspace-full/tags
 FROM gitpod/workspace-rust:latest
 
-
+USER root
 ## We need to install protoc so we can run cargo build
-RUN apt-get update && apt-get install -y protobuf-compiler libprotobuf-dev
+RUN sudo apt-get update && apt-get install -y protobuf-compiler libprotobuf-dev
