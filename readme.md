@@ -5,6 +5,10 @@
 ## TODO
 - add Dockerfile for development
     - add `protoc`
+```sh
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y protobuf-compiler libprotobuf-dev
+```
 
 - add Dockerfile with Multi Stage build for production
 
