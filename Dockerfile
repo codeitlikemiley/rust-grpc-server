@@ -27,6 +27,12 @@ RUN adduser \
     "${USER}"
 COPY . /app
 WORKDIR /app
+ARG DB_URL
+ARG GRPC_SERVER_ADDRESS
+ENV DB_URL=${DB_URL}
+ENV GRPC_SERVER_ADDRESS=${GRPC_SERVER_ADDRESS}
+RUN echo "DB_URL=${DB_URL}" > /app/.env
+RUN echo "GRPC_SERVER_ADDRESS=${GRPC_SERVER_ADDRESS}" >> /app/.env
 # Copy dependencies so we don't need to rebuild
 COPY --from=cacher /app/target target
 COPY --from=cacher /usr/local/cargo /usr/local/cargo
@@ -39,11 +45,16 @@ RUN cargo build --release
 
 # Stage 4: Final stage - Reduce the size of the Docker image
 FROM gcr.io/distroless/cc-debian11
+# FROM debian:buster-slim
 # Import the non-root user from the builder
 COPY --from=builder /etc/passwd /etc/passwd
 COPY --from=builder /etc/group /etc/group
 # Copy the app from the builder
-COPY --from=builder /app/target/release/rust-grpc /app
+COPY --from=builder /app/target/release/rust-grpc /app/rust-grpc
+# This contains our compiled protobuf files to rust code
+COPY --from=builder /app/pb /app/pb
+# Copy the .env file
+COPY --from=builder /app/.env /app/.env
 WORKDIR /app
 # Set the user to non-root
 USER web:web
