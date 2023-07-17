@@ -795,22 +795,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2dffe52ecf27772e601905b7522cb4ef790d2cc203488bbd0e2fe85fcb74566d"
 
 [[package]]
-name = "microservices"
-version = "0.1.0"
-dependencies = [
- "dotenv",
- "glob",
- "prost",
- "prost-derive",
- "prost-types",
- "sqlx",
- "tokio",
- "tonic",
- "tonic-build",
- "tonic-reflection",
-]
-
-[[package]]
 name = "mime"
 version = "0.3.17"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1260,6 +1244,22 @@ dependencies = [
  "spki",
  "subtle",
  "zeroize",
+]
+
+[[package]]
+name = "rust-grpc"
+version = "0.1.0"
+dependencies = [
+ "dotenv",
+ "glob",
+ "prost",
+ "prost-derive",
+ "prost-types",
+ "sqlx",
+ "tokio",
+ "tonic",
+ "tonic-build",
+ "tonic-reflection",
 ]
 
 [[package]]
