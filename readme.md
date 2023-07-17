@@ -9,4 +9,4 @@
 3. [Enable Tonic Reflection with Evans CLI](./docs/evans-cli.md)
 4. [Simple Usage with Postman](./docs/postman.md)
 5. [VS Code Snippets](./docs/vscode-snippets.md)
-
+6. [Terraform](./docs/terraform.md)
