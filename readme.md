@@ -1,5 +1,6 @@
 # GRPC Server for Rust
 
+[![Gitpod ready-to-code](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/codeitlikemiley/grpc-rust-server)
 ## VsCode Snippets for GRPC services
 Press <kbd>OPT</kbd> + <kbd>F1</kbd>
 1. for creating .proto search: <kbd>proto</kbd>
