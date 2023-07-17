@@ -6,3 +6,23 @@ tasks:
 vscode:
   extensions:
     - rust-lang.rust-analyzer
+    - franneck94.vscode-rust-config
+    - Swellaby.vscode-rust-test-adapter
+    - panicbit.cargo
+    - aaron-bond.better-comments
+    - vadimcn.vscode-lldb
+    - serayuzgur.crates
+    - dotenv.dotenv-vscode
+    - EditorConfig.EditorConfig
+    - usernamehw.errorlens
+    - tamasfe.even-better-toml
+    - mhutchie.git-graph
+    - donjayamanne.githistory
+    - pascalsenn.keyboard-quickfix
+    - Luxcium.pop-n-lock-theme-vscode
+    - hbenl.vscode-test-explorer
+    - Gruntfuggly.todo-tree
+
+ports:
+    - port: 50051
+      onOpen:  ignore
